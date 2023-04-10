@@ -1,6 +1,6 @@
 # Hackwarts
 ## Synopsis
-This is a web-based complaint registration system for a university built for Hackwarts. The system allows students to register their complaints, track their complaints, and receive updates on their complaints. The system also provides an interface for administrators to manage complaints and assign them to different departments for resolution.
+This is a web-based complaint registration system for GIKI built for Hackwarts. The system allows students to register their complaints, track their complaints, and receive updates on their complaints. The system also provides an interface for administrators to manage complaints and assign them to different departments for resolution.
 
 ## Technologies Used
 This project uses the following technologies:
