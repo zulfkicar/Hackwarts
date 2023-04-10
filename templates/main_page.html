@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap">
+	<title>Page Title</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			background: linear-gradient(90deg, rgba(72,222,168,1) 0%, rgba(83,151,215,1) 100%);
+			height: 100%;
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			font-family: 'Poppins', sans-serif;
+		}
+
+		header {
+			display: flex;
+			flex-direction: row;
+			background-color: #E8D5C4;
+			height: 232px;
+			width: 100%;
+			justify-content: center;
+			align-items: center;
+			position: relative;
+		}
+
+		.logo {
+			height: 222px;
+			width: 229px;
+			position: absolute;
+			left: 0;
+			margin-left: 20px;
+		}
+
+		.title {
+			font-style: normal;
+			font-weight: 400;
+			font-size: 40px;
+			line-height: 60px;
+			text-align: center;
+			text-decoration-line: underline;
+		}
+		
+		.title desc {
+			font-size: 24px;
+			font-weight: regular;
+			color: black;
+		}
+
+		.intro {
+			background-color: rgba(0,0,0,0);
+			height: 108px;
+			width: 1300px;
+			margin: 50px auto 0 auto;
+			padding: 20px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 30px;
+			font-weight: regular;
+			color: background: #5C2B83;
+		}
+
+		.form-container {
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			margin-top: 50px;
+			margin-bottom: 50px;
+                  border-radius: 20px;
+		}
+
+		.form-box {
+			height: 570px;
+			width: 625px;
+			background-color: #EDC7C7;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin-left: 20px;
+			margin-right: 20px;
+                  border-radius: 20px;
+		}
+
+		.form-box h2 {
+			background-color: #4EBEAA;
+			height: 69px;
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 40px;
+			font-weight: regular;
+			color: white;
+			margin: 0;
+                  border-radius: 20px;
+		}
+		.form-box .text-box {
+			margin-bottom: 20px;
+		}
+
+		.form-box .text-box label {
+			display: block;
+			font-size: 18px;
+			font-weight: regular;
+			margin-bottom: 10px;
+		}	
+
+		input[type="text"] {
+			width: 532px;
+			height: 62px;
+			font-size: 24px;
+			border: none;
+			border-radius: 20px;
+			padding: 10px;
+			margin-bottom: 20px;
+		}
+
+		button {
+			height: 69px;
+			width: 428px;
+			background-color: #5398D7;
+			border: none;
+			border-radius: 5px;
+			color: white;
+			font-size: 24px;
+			font-weight: regular;
+			cursor: pointer;
+                  border-radius: 20px;
+		}
+
+		button:hover {
+			background-color: #3B78C9;
+		}
+
+		@media screen and (max-width: 1440px) {
+			.intro {
+				width: 90%;
+			}
+
+			.form-container {
+				flex-direction: column;
+				align-items: center;
+			}
+
+			.form-box {
+				width: 90%;
+				margin: 20px;
+			}
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<div class="logo">
+			<img src="logo.png" alt="Logo">
+		</div>
+		<div class="title">
+			Complaint Management System
+		</div>
+	</header>
+
+	<div class="intro">
+		Welcome to GIKI Complaint Management System! Please use our online complaint portal to register & track your complaints. 
+	</div>
+
+	<div class="form-container">
+		<form method="post" action="">
+		<div class="form-box">
+			<h2>Registration No.</h2>
+			<br></br>
+			<div class="text-box">
+    				<label for="registration">Registration Number:</label>
+    				<input type="text" id="registration" placeholder="Enter registration number">
+    				<label for="registration">(Example: 20XXXXX)</label>
+  			</div>
+			<br></br><br></br><br></br>
+			<button type="submit" id="register" class="button">Next Step</button>
+		</div>
+		</form>
+		<form method="post" action="">
+		<div class="form-box">
+			<h2>Track Your Complaint</h2>
+			<br></br>
+			
+			<div class="text-box">
+				<label for="tracking">Complaint ID:</label>
+				<input type="text" id="tracking" placeholder="Enter Complaint ID:">
+    				<label for="registration">Registration Number:</label>
+    				<input type="text" id="registration" placeholder="Enter registration number">
+    				<label for="registration">(Example: 20XXXXX)</label>
+  			</div>
+			<button type="submit" id="track" class="button" >Next Step</button>
+			
+		</div>
+		</form>
+	</div>
+</body>
+</html>
