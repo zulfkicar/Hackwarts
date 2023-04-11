@@ -46,6 +46,56 @@ def register_complaint():
         c.execute("INSERT INTO complaints (user_id, nature_of_complaint, departments_concerned, room_no, hostel_no, details) VALUES (?, ?, ?, ?, ?, ?)", (user[0], nature_of_complaint, departments_concerned, room_no, hostel_no, details))
         complaint_id = c.lastrowid
         
+from flask import Flask, render_template, request, redirect, url_for
+import sqlite3
+
+app = Flask(__name__)
+
+# Database connection
+conn = sqlite3.connect('complaints.db')
+c = conn.cursor()
+
+# Login route
+@app.route('/', methods=['GET','POST'])
+@app.route('/main', methods=['GET','POST'])
+def main_page():
+    if request.method == 'POST':
+        if request.form['action'] == 'register':
+            reg_no=request.form['registration']
+            # Check if reg no exists in users table
+            c.execute("SELECT * FROM users WHERE reg_no=?", (reg_no,))
+            user = c.fetchone()
+            if user:
+                return redirect(url_for('register_complaint', reg_no=reg_no))
+            else:
+                return render_template('main_page.html', error='Invalid registration number')
+        elif request.form['action'] == 'track':
+            tracking=request.form['tracking']
+            reg_no=request.form['registration']
+            return redirect(url_for('user_complaint_status', reg_no=reg_no, tracking=tracking))
+    return render_template("main_page.html")
+            
+    
+# User complaint registration route
+@app.route('/register', methods=['GET','POST'])
+def register_complaint():
+    if request.method == 'POST':
+        reg_no = request.args.get('reg_no')
+        
+        # Check if reg no exists in users table
+        c.execute("SELECT * FROM users WHERE reg_no=?", (reg_no,))
+        user = c.fetchone()
+        
+        # Add complaint to complaints table
+        nature_of_complaint = request.form['nature_of_complaint']
+        departments_concerned = request.form['departments_concerned']
+        room_no = request.form['room_no']
+        hostel_no = request.form['hostel_no']
+        details = request.form['details']
+        
+        c.execute("INSERT INTO complaints (reg_no, nature_of_complaint, departments_concerned, room_no, hostel_no, details) VALUES (?, ?, ?, ?, ?, ?)", (reg_no, nature_of_complaint, departments_concerned, room_no, hostel_no, details))
+        complaint_id = c.lastrowid
+        
         conn.commit()
         
         return redirect(url_for('complaint_status', reg_no=reg_no, complaint_id=complaint_id))
@@ -59,13 +109,16 @@ def complaint_status():
     complaint_id = request.args.get('tracking')
     
     # Check if complaint with given reg no and complaint id exists
-    c.execute("SELECT * FROM complaints WHERE user_id=? AND id=?", (reg_no, complaint_id))
+    c.execute("SELECT * FROM complaints WHERE reg_no=? AND complaint_id=?", (reg_no, complaint_id))
     complaint = c.fetchone()
     
     if not complaint:
         return render_template('complaint_status.html', error='Invalid complaint details')
     
     return render_template('complaint_status.html', complaint=complaint)
+
+
+
 
 # # Admin dashboard route
 # @app.route('/admin')
